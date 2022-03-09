@@ -17,6 +17,8 @@ class FileEventHandler(PatternMatchingEventHandler):
         "*.pdf": "Documents/PDFFiles",
         "*.doc": "Documents/WordFiles",
         "*.docx": "Documents/WordFiles",
+        "*.csv": "Documents/ExcelFiles",
+        "*.xls": "Documents/ExcelFiles",
         # TODO: Add more extensions
     }
 

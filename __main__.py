@@ -34,6 +34,7 @@ def setup_logger():
 
     params = {"level": logging.DEBUG, "handlers": [s_handler]}
     logging.basicConfig(**params)
+    logging.getLogger("watchdog.observers.inotify_buffer").setLevel(logging.INFO)
 
 
 if __name__ == "__main__":

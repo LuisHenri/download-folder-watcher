@@ -18,9 +18,7 @@ def main():
     try:
         watchdog_handler = FileEventHandler()
         observer.schedule(
-            watchdog_handler,
-            str(Path.home() / "Downloads"),
-            recursive=True
+            watchdog_handler, str(Path.home() / "Downloads"), recursive=False
         )
         observer.start()
 
@@ -31,6 +29,7 @@ def main():
         observer.stop()
         observer.join()
         raise
+
 
 def setup_logger():
     """Setup default logging formatter and level."""

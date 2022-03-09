@@ -3,9 +3,7 @@ import sys
 import time
 from pathlib import Path
 
-from watchdog.observers import Observer
-
-from downloadswatcher import FileEventHandler
+from dirwatcher import DirWatcher, FileEventHandler
 
 logger = logging.getLogger(__name__)
 
@@ -13,21 +11,15 @@ logger = logging.getLogger(__name__)
 def main():
     logger.info("Starting Downloads Watcher")
 
-    # TODO: Move observer to inside downloadswatcher.py
-    observer = Observer()
+    handler = FileEventHandler()
+    downloads_watcher = DirWatcher(str(Path.home() / "Downloads"), handler)
     try:
-        watchdog_handler = FileEventHandler()
-        observer.schedule(
-            watchdog_handler, str(Path.home() / "Downloads"), recursive=False
-        )
-        observer.start()
-
+        downloads_watcher.start()
         while True:
             time.sleep(60)
 
     except KeyboardInterrupt:
-        observer.stop()
-        observer.join()
+        downloads_watcher.stop()
         raise
 
 

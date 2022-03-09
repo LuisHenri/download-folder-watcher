@@ -1,12 +1,36 @@
 import logging
 import sys
+import time
+from pathlib import Path
+
+from watchdog.observers import Observer
+
+from downloadswatcher import FileEventHandler
 
 logger = logging.getLogger(__name__)
 
 
 def main():
-    logger.info("Hello World")
+    logger.info("Starting Downloads Watcher")
 
+    # TODO: Move observer to inside downloadswatcher.py
+    observer = Observer()
+    try:
+        watchdog_handler = FileEventHandler()
+        observer.schedule(
+            watchdog_handler,
+            str(Path.home() / "Downloads"),
+            recursive=True
+        )
+        observer.start()
+
+        while True:
+            time.sleep(60)
+
+    except KeyboardInterrupt:
+        observer.stop()
+        observer.join()
+        raise
 
 def setup_logger():
     """Setup default logging formatter and level."""

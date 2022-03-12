@@ -1,4 +1,8 @@
 repos:
+-   repo: https://github.com/asottile/reorder_python_imports
+    rev: v2.7.1
+    hooks:
+    -   id: reorder-python-imports
 -   repo: https://github.com/psf/black
     rev: 21.9b0
     hooks:
@@ -7,10 +11,6 @@ repos:
     rev: 3.9.2
     hooks:
     - id: flake8
--   repo: https://github.com/asottile/reorder_python_imports
-    rev: v2.7.1
-    hooks:
-    -   id: reorder-python-imports
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1
     hooks:

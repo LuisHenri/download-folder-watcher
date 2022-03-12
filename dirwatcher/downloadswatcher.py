@@ -22,6 +22,7 @@ class FileEventHandler(PatternMatchingEventHandler):
     """
 
     _patterns_dict = {
+        # Pattern : Destination
         "*.png": "Pictures",
         "*.jpg": "Pictures",
         "*.jpeg": "Pictures",

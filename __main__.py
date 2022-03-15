@@ -31,11 +31,13 @@ def setup_logger():
     for handler in logging.root.handlers[:]:
         logging.root.removeHandler(handler)
 
-    formatter = logging.Formatter("%(levelname)s %(asctime)s %(name)s: %(message)s")
+    f_handler = logging.FileHandler("./downloads-watcher.log", encoding="utf-8")
     s_handler = logging.StreamHandler(sys.stdout)
+    formatter = logging.Formatter("%(levelname)s %(asctime)s %(name)s: %(message)s")
+    f_handler.setFormatter(formatter)
     s_handler.setFormatter(formatter)
 
-    params = {"level": logging.DEBUG, "handlers": [s_handler]}
+    params = {"level": logging.DEBUG, "handlers": [f_handler, s_handler]}
     logging.basicConfig(**params)
     logging.getLogger("watchdog.observers.inotify_buffer").setLevel(logging.INFO)
 

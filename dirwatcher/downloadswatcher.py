@@ -69,7 +69,6 @@ class FileEventHandler(PatternMatchingEventHandler):
             os.rename(event.src_path, new_file_dest)
         except FileNotFoundError as err:
             logger.debug(err)
-            pass
 
 
 class DirWatcher:

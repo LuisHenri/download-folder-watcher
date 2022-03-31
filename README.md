@@ -1,4 +1,8 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/luishenri/downloads-folder-watcher/badge)](https://www.codefactor.io/repository/github/luishenri/downloads-folder-watcher)
+
 # Downloads Folder Watcher
+
+______________________________________________________________________
 
 Hi!\
 Have you ever fresh-installed your OS and saw how **beautiful** and **clean** were the folders inside it, but after a while using it and downloading much stuff from the internet you were **not able** anymore **to easily find something inside your Downloads Folder**?

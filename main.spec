@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(
-    ["project_name/__main__.py"],  # Change "project_name" to your project name
+    ["__main__.py"],
     pathex=[],
     binaries=[],
     datas=[],
@@ -29,7 +29,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name="main",  # Change this to your Project name
+    name="DownloadsWatcher",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

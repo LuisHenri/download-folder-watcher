@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-
+# This is a PyInstaller .SPEC file to generate a ONE FILE executable
 
 block_cipher = None
 

@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(
-    ["__main__.py"],
+    ["downloads_watcher/__main__.py"],
     pathex=[],
     binaries=[],
     datas=[],

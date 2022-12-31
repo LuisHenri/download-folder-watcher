@@ -20,18 +20,19 @@ Then you can simply run the main script by executing: `python -m downloads_watch
 
 ### Configuring
 
-You can edit the extensions you wish to track and the destination folders on [`downloads_watcher/downloadswatcher.py`](downloads_watcher/downloadswatcher.py).\
+You can edit the extensions you wish to track and the destination folders on [`bin/settings.json`](bin/settings.json).\
 But here is a snippet from it anyway:
 
-```python
-_patterns_dict = {
-    # Pattern : Destination
-    "*.png": "Pictures",
-    "*.jpg": "Pictures",
-    "*.txt": "Documents/TextFiles",
-    "*.pdf": "Documents/PDFFiles",
-    "*.doc": "Documents/WordFiles",
-    "*.xls": "Documents/ExcelFiles",
+```json
+{
+    "file_patterns": {
+        "Pictures": ["*.png", "*.jpg", "*.jpeg", "*.exif", "*.tiff", "*.gif", "*.bmp"],
+        "Documents/TextFiles": ["*.txt"],
+        "Documents/PDFFiles": ["*.pdf"],
+        "Documents/DocFiles": ["*.doc", "*.docx"],
+        "Documents/ExcelFiles": ["*.csv", "*.xls"]
+    },
+    "watch_folder_path": "C:/Users/LuisHenri/Downloads"
 }
 ```
 
@@ -40,7 +41,7 @@ _patterns_dict = {
 It is also possible to create an executable from it in order to make it simpler to run it at startup.\
 To do so, install `pyinstaller` by either running `pip install -U pyinstaller` or `pip install -r requirements-dev.txt`.
 
-After finished, you can simply run `pyinstaller --clean __main__.spec` and it will create a `DownloadsWatcher` executable inside a `dist` folder.
+After finished, you can simply run `pyinstaller --clean main.spec` and it will create a `DownloadsWatcher` executable inside a `dist` folder.
 
 > **NOTE:** It will have an `.EXE` extension if compiled on Windows or NO extension at all if compiled on Linux.
 
@@ -48,7 +49,3 @@ Now you just need to set your OS to run it at startup:
 
 - [on Windows](https://www.dell.com/support/kbdoc/pt-br/000124550/how-to-add-app-to-startup-in-windows-10)
 - [on Linux](https://askubuntu.com/questions/48321/how-do-i-start-applications-automatically-on-login)
-
-______________________________________________________________________
-
-Follow me on Instagram: [@LuisHenri\_](https://www.instagram.com/LuisHenri_) 🙂

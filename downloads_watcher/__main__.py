@@ -30,7 +30,7 @@ def setup_logger():
     for handler in logging.root.handlers[:]:
         logging.root.removeHandler(handler)
 
-    f_handler = logging.FileHandler("./downloads-watcher.log", encoding="utf-8")
+    f_handler = logging.FileHandler("./bin/downloads-watcher.log", encoding="utf-8")
     s_handler = logging.StreamHandler(sys.stdout)
     formatter = logging.Formatter("%(levelname)s %(asctime)s %(name)s: %(message)s")
     f_handler.setFormatter(formatter)

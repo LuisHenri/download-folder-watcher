@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 from pathlib import Path
@@ -20,27 +21,28 @@ class FileEventHandler(PatternMatchingEventHandler):
         at the same time.
     """
 
-    _patterns_dict = {
-        # Pattern : Destination
-        "*.png": "Pictures",
-        "*.jpg": "Pictures",
-        "*.jpeg": "Pictures",
-        "*.exif": "Pictures",
-        "*.tiff": "Pictures",
-        "*.gif": "Pictures",
-        "*.bmp": "Pictures",
-        "*.txt": "Documents/TextFiles",
-        "*.pdf": "Documents/PDFFiles",
-        "*.doc": "Documents/WordFiles",
-        "*.docx": "Documents/WordFiles",
-        "*.csv": "Documents/ExcelFiles",
-        "*.xls": "Documents/ExcelFiles",
-        # TODO: Add more extensions
-    }
+    def __init__(self, settings_path: str = "bin/settings.json"):
+        """Initialize the new class instance.
 
-    def __init__(self):
-        """Initialize the new class instance."""
-        super().__init__(patterns=self._patterns_dict.keys(), ignore_directories=True)
+        :param settings_path: path to the settings file
+        """
+        with open(settings_path, "r") as f:
+            self.settings: dict = json.load(f)
+
+        super().__init__(
+            patterns=[
+                pat
+                for pat_list in self.settings["file_patterns"].values()
+                for pat in pat_list
+            ],
+            ignore_directories=True,
+        )
+
+        self.inv_file_patterns = {
+            pat: dest
+            for dest, pat_list in self.settings["file_patterns"].items()
+            for pat in pat_list
+        }
         logger.info("FileEventHandler initialized")
 
     def on_modified(self, event: FileModifiedEvent):
@@ -55,7 +57,7 @@ class FileEventHandler(PatternMatchingEventHandler):
 
         _, modified_file = os.path.split(os.path.abspath(event.src_path))
         modified_file_name, ext = os.path.splitext(modified_file)
-        new_dest = str(Path.home() / self._patterns_dict["*" + ext])
+        new_dest = str(Path.home() / self.inv_file_patterns["*" + ext])
         os.makedirs(new_dest, exist_ok=True)
 
         new_file_dest = f"{new_dest}/{modified_file}"

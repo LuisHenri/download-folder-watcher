@@ -1,0 +1,11 @@
+{
+    "file_patterns": {
+        "Pictures": ["*.png", "*.jpg", "*.jpeg", "*.exif", "*.tiff", "*.gif", "*.bmp"],
+        "Documents/TextFiles": ["*.txt"],
+        "Documents/PDFFiles": ["*.pdf"],
+        "Documents/DocFiles": ["*.doc", "*.docx"],
+        "Documents/ExcelFiles": ["*.csv", "*.xls"]
+    },
+    "log_file_path": "./bin/logs/downloads-watcher.log",
+    "downloads_folder_path": "C:/Users/LuisHenri/Downloads"
+}

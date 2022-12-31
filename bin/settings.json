@@ -4,7 +4,7 @@
         "Documents/TextFiles": ["*.txt"],
         "Documents/PDFFiles": ["*.pdf"],
         "Documents/DocFiles": ["*.doc", "*.docx"],
-        "Documents/ExcelFiles": ["*.csv", "*.xls"]
+        "Documents/ExcelFiles": ["*.csv", "*.xls", "*.xlsx"]
     },
     "watch_folder_path": "C:/Users/LuisHenri/Downloads"
 }

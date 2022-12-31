@@ -1,7 +1,7 @@
+import json
 import logging
 import sys
 import time
-from pathlib import Path
 
 from tendo import singleton
 
@@ -13,8 +13,11 @@ logger = logging.getLogger(__name__)
 def main():
     logger.info("Starting Downloads Watcher")
 
-    handler = FileEventHandler()
-    downloads_watcher = DirWatcher(str(Path.home() / "Downloads"), handler)
+    with open("./bin/settings.json", "r") as f:
+        settings = json.load(f)
+
+    handler = FileEventHandler(settings["file_patterns"])
+    downloads_watcher = DirWatcher(settings["watch_folder_path"], handler)
     try:
         downloads_watcher.start()
         while True:

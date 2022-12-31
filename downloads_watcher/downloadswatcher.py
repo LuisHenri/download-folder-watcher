@@ -1,4 +1,3 @@
-import json
 import logging
 import os
 from pathlib import Path
@@ -21,28 +20,19 @@ class FileEventHandler(PatternMatchingEventHandler):
         at the same time.
     """
 
-    def __init__(self, settings_path: str = "bin/settings.json"):
+    def __init__(self, file_patterns: dict):
         """Initialize the new class instance.
 
-        :param settings_path: path to the settings file
+        :param file_patterns: dictionary of file patterns and their destination
         """
-        with open(settings_path, "r") as f:
-            self.settings: dict = json.load(f)
-
+        self.inv_file_patterns = {
+            pat: dest for dest, pat_list in file_patterns.items() for pat in pat_list
+        }
         super().__init__(
-            patterns=[
-                pat
-                for pat_list in self.settings["file_patterns"].values()
-                for pat in pat_list
-            ],
+            patterns=[pat for pat in self.inv_file_patterns.keys()],
             ignore_directories=True,
         )
 
-        self.inv_file_patterns = {
-            pat: dest
-            for dest, pat_list in self.settings["file_patterns"].items()
-            for pat in pat_list
-        }
         logger.info("FileEventHandler initialized")
 
     def on_modified(self, event: FileModifiedEvent):
@@ -75,14 +65,15 @@ class FileEventHandler(PatternMatchingEventHandler):
 class DirWatcher:
     """Thread class to monitor file system events."""
 
-    def __init__(self, path: str, handler: FileEventHandler):
+    def __init__(self, watch_path: str, handler: FileEventHandler):
         """Initialize the new class instance.
 
-        :param path: the path to watch
+        :param watch_path: path to the directory to be monitored
         :param handler: filesystem event handler
         """
-        assert os.path.isdir(path), f"Invalid path to watch: {path}"
-        self.__src_path = path
+        if not os.path.isdir(watch_path):
+            raise NotADirectoryError(f"{watch_path} is not a directory")
+        self.__src_path = watch_path
         self.__event_handler = handler
         self.__event_observer = Observer()
 

@@ -6,6 +6,5 @@
         "Documents/DocFiles": ["*.doc", "*.docx"],
         "Documents/ExcelFiles": ["*.csv", "*.xls"]
     },
-    "log_file_path": "./bin/logs/downloads-watcher.log",
-    "downloads_folder_path": "C:/Users/LuisHenri/Downloads"
+    "watch_folder_path": "C:/Users/LuisHenri/Downloads"
 }

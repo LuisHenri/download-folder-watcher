@@ -5,7 +5,7 @@ from pathlib import Path
 
 from tendo import singleton
 
-from dirwatcher import DirWatcher, FileEventHandler
+from downloads_watcher import DirWatcher, FileEventHandler
 
 logger = logging.getLogger(__name__)
 

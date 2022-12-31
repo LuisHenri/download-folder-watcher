@@ -10,3 +10,5 @@ Makefile
 project_name/__init__.py
 project_name/__main__.py
 main.spec
+requirements.txt
+requirements-dev.txt

@@ -16,11 +16,11 @@ This is a simple **cross-platform** project that aims to organize your Downloads
 
 First you need to set up the environment by running `pip install -r requirements.txt` (it is recommended to use a [virtual environment](https://docs.python.org/pt-br/3/library/venv.html)).
 
-Then you can simply run the main script by executing: `python __main__.py`.
+Then you can simply run the main script by executing: `python -m downloads_watcher`.
 
 ### Configuring
 
-You can edit the extensions you wish to track and the destination folders on [`dirwatcher/downloadswatcher.py`](dirwatcher/downloadswatcher.py).\
+You can edit the extensions you wish to track and the destination folders on [`downloads_watcher/downloadswatcher.py`](downloads_watcher/downloadswatcher.py).\
 But here is a snippet from it anyway:
 
 ```python

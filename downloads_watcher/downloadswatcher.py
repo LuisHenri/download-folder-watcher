@@ -2,8 +2,7 @@ import logging
 import os
 from pathlib import Path
 
-from watchdog.events import FileModifiedEvent
-from watchdog.events import PatternMatchingEventHandler
+from watchdog.events import FileModifiedEvent, PatternMatchingEventHandler
 from watchdog.observers import Observer
 
 logger = logging.getLogger(__name__)
